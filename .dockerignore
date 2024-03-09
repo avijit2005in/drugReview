@@ -1,0 +1,20 @@
+# Ignore specific file
+notes.txt
+
+# Ignore specific directory
+drugReview_model/
+requirements/
+venv/
+
+# Ignore all log files
+*.log
+.git
+*.md
+.cache
+.DS_Store
+
+# Ignore everything in the temp directory
+temp/
+
+# Exclude all files/directories except those named 'important.txt'
+!**/*.txt

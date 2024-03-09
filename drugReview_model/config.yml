@@ -1,0 +1,193 @@
+# Package Overview
+package_name: drug_review_classification_model
+
+# Data Files
+drugs_data_file: drugsReview.csv
+training_data_file: drugsReview_train.csv
+test_data_file: drugsReview_test.csv
+
+pipeline_name: drug_review_classification_model
+pipeline_save_file: drug_review_model_output_080324
+vectorizer_save_file: tfidf_vectorizer_080324
+# Variables
+# The variable we are attempting to predict text label
+target: condition_numeric
+
+features:      # final features to be use
+  - tokenize
+
+unused_fields:  # Features to drop before pipeline
+  - review
+  - condition
+
+target_conditions:
+  - Birth Control
+  - Depression
+  - Pain
+  - Anxiety
+  - Acne
+  - Bipolar Disorde
+  - Insomnia
+  - Weight Loss
+  - Obesity
+  - ADHD
+  - Diabetes, Type 2
+  - Emergency Contraception
+  - High Blood Pressure
+  - Vaginal Yeast Infection
+# Features inside processing pipeline
+
+contraction_dict:
+  aint: is not
+  arent: are not
+  cant: cannot
+  cause: because
+  couldve: could have
+  couldnt: could not
+  didnt: did not
+  doesnt: does not
+  dont: do not
+  hadnt: had not
+  hasnt: has not
+  havent: have not
+  hed: he would
+  hell: he will
+  hes: he is
+  howd: how did
+  howdy: how do you
+  howll: how will
+  hows: how is
+  Id: I would
+  Idve: I would have
+  Ill: I will
+  Illve: I will have
+  Im: I am
+  Ive: I have
+  id: i would
+  idve: i would have
+  ill: i will
+  illve: i will have
+  im: i am
+  ive: i have
+  isnt: is not
+  itd: it would
+  itdve: it would have
+  itll: it will
+  itllve: it will have
+  its: it is
+  lets: let us
+  maam: madam
+  maynt: may not
+  mightve: might have
+  mightnt: might not
+  mightntve: might not have
+  mustve: must have
+  mustnt: must not
+  mustntve: must not have
+  neednt: need not
+  needntve: need not have
+  oclock: of the clock
+  oughtnt: ought not
+  oughtntve: ought not have
+  shant: shall not
+  shantve: shall not have
+  shed: she would
+  shedve: she would have
+  shell: she will
+  shellve: she will have
+  shes: she is
+  shouldve: should have
+  shouldnt: should not
+  shouldntve: should not have
+  sove: so have
+  sos: so as
+  thiss: this is
+  thatd: that would
+  thatdve: that would have
+  thats: that is
+  thered: there would
+  theredve: there would have
+  theres: there is
+  heres: here is
+  theyd: they would
+  theydve: they would have
+  theyll: they will
+  theyllve: they will have
+  theyre: they are
+  theyve: they have
+  tove: to have
+  wasnt: was not
+  wed: we would
+  wedve: we would have
+  well: we will
+  wellve: we will have
+  were: we are
+  weve: we have
+  werent: were not
+  whatll: what will
+  whatllve: what will have
+  whatre: what are
+  whats: what is
+  whatve: what have
+  whens: when is
+  whenve: when have
+  whered: where did
+  wheres: where is
+  whereve: where have
+  wholl: who will
+  whollve: who will have
+  whos: who is
+  whove: who have
+  whys: why is
+  whyve: why have
+  willve: will have
+  wont: will not
+  wontve: will not have
+  wouldve: would have
+  wouldnt: would not
+  wouldntve: would not have
+  yall: you all
+  yalld: you all would
+  yalldve: you all would have
+  yallre: you all are
+  yallve: you all have
+  youd: you would
+  youdve: you would have
+  youll: you will
+  youllve: you will have
+  youre: you are
+  youve: you have
+
+text_var: review  # first drop NA values , then --> cleaning
+condition_var: condition
+
+condition_mappings:
+  ADHD: 0
+  Acne: 1
+  Anxiety: 2
+  Bipolar Disorde: 3
+  Birth Control: 4
+  Depression: 5
+  Diabetes, Type 2: 6
+  Emergency Contraception: 7
+  High Blood Pressure: 8
+  Insomnia: 9
+  Obesity: 10
+  Pain: 11
+  Vaginal Yeast Infection: 12
+  Weight Loss: 13
+
+# set train/test split
+test_size: 0.05
+
+# to set the random seed
+random_state: 42
+
+label_count: 14
+
+# Model Parameters
+max_features: 2000
+nthread: 6
+tree_method: hist
+device: cpu
+objective: multi:softprob
